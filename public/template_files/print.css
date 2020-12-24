@@ -1,0 +1,16 @@
+/*hiddenn elements */
+.actions-bar, .actions-bar , .no-print, .header-elements, #main-nav , .crumbs, .filter-results, .footer-bar, .bulk-actions, .results-counter  
+{ display:none; padding:0; margin:0}
+
+
+@media print {
+	.report table td {font-size:11px;}
+.footer,
+.pages-head,
+.popup-chat,
+.btn-group.right.m-b-20,
+.Submit.btn-md  , .actions-bar, .actions-bar , .no-print, .header-elements, #main-nav , .crumbs, .filter-results, .footer-bar, .bulk-actions, .results-counter  {
+	 display:none !important;
+}
+#charts-wrap.hidden-div { display:none;} 
+}

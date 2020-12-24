@@ -1,0 +1,49 @@
+/*	-------------------------------------------------------------
+File Name Common.css
+	-------------------------------------------------------------	 */
+* { margin: 0; padding: 0; }
+body { font-size: 13px; font-weight: 400; }
+a { color: #252525; text-decoration: none; outline: none; cursor: pointer; }
+a:hover { text-decoration: none; }
+a:active { outline: none; }
+img { border: none; }
+hr { border: 0 #ccc solid; border-top-width: 1px; clear: both; height: 0 }
+h1, h2, h3, h4, h5, h6 { font-weight: 100; }
+h1, h2, h3, h4, h5, h6, p { padding-bottom: 5px; color: #252525; }
+h1 { font-size: 28px }
+h2 { font-size: 24px }
+h3 { font-size: 20px }
+h4 { font-size: 17px }
+h5 { font-size: 14px }
+h6 { font-size: 12px }
+/*commen classes */
+.clear { font-size: 1%; clear: both; height: 1%; }
+.left { float: left; display: inline; }
+.right { float: right; display: inline; }
+.hidden { display: none; }
+.theme-color-a { background: #F7F7F7; }
+.theme-color-b { background: #b6daff; }
+.theme-color-c { background: #edf9bb; }
+.barrow { background: url(images/crumbs.gif) no-repeat left; padding-left: 12px; font-size: 12px; margin-top: 5px }
+.small-txt { font-size: 11px; }
+.text-normal { font-weight:normal;}
+.mid-txt { font-size: 14px; }
+.large-txt { font-size: 18px; }
+.gray-txt { color: #666 }
+.btn-text { border-bottom: 1px solid #0189DE; display: inline-block; padding-right: 0; padding-bottom: 0; padding-left: 0; }
+.btn-text:focus, .btn-text:active { color: #0189DE }
+.paragraph ul, .paragraph ol { padding-left: 20px; margin-bottom: 5px; }
+.paragraph ul { list-style: disc; }
+/*footer*/
+.footer { color: #FFF; margin: 0 auto; padding: 35px 0; position: relative; }
+.bottom-nav a { color: #333 }
+.bottom-nav a:hover { color: #000 }
+.bottom-nav { padding: 8px 15px; border-left: 2px solid #ddd; }
+.bottom-nav p { font-size: 11px; padding-bottom: 10px }
+.bottom-nav p span { padding: 0 5px }
+.footer-logo { padding: 0 15px; }
+.text-right {text-align:right; }
+.float-right {float:right; }
+.float-left {float:right; }
+.text-left {text-align:left; }
+span.summary-currency {font-size: 70%; color: #999; font-weight: 700}

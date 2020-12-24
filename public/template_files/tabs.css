@@ -1,0 +1,17 @@
+/*Tabs*/
+ .tabs-buttons { position:relative; z-index:5;/*overflow:hidden;*/ }
+.no-tabs { background:none; }
+.tabs-buttons ul { display:block; list-style:none; }
+.tabs-buttons ul li { display:inline; float:left; padding-right:3px; position:relative; }
+.tabs .tabs-buttons ul li > a { background: none repeat scroll 0 0 #f6f8f8; border: 1px solid #dee5e7; color: #333; cursor: pointer; display: block; font-size: 15px; padding: 10px 15px; text-align: center; }
+.tabs .tabs-buttons ul li a span.tooltip { display: inline-block; height: 16px; margin: 0; padding: 0; position: relative; top: 3px; width: 24px; }
+.tabs .tabs-buttons ul li a .tooltip a { background: none; border: medium none; padding: 0; position: absolute; right: 0; top:-4px }
+.tabs .tabs-buttons ul li a:hover, .tabs .tabs-buttons ul li.current a { background:#fff }
+.tabs-box { background: none repeat scroll 0 0 #fff; margin-left: 1px; margin-top: -1px; padding: 15px; position: relative; z-index: 10; }
+.tabs-box .listing-table td { vertical-align:middle }
+.tabs-box .listing-table td .text { padding-bottom:5px; }
+.sub-item { background:url(images/bulk_actions.gif) no-repeat left 12px; padding:0 0 0 22px; float: left; margin:-5px 0 0 10px; overflow: hidden; }
+.sub-item-sub { background:none; padding:0 0 0 0; float: left; margin:-5px 0 0 10px; overflow: hidden; }
+.move-table { text-align:center }
+.view-table td { padding:5px 3px }
+a.Tooltip { cursor:help; }

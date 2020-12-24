@@ -1,0 +1,56 @@
+.tag_input .ms-ctn{
+    background: rgba(255, 255, 255, 0);
+    border: 0px;
+    border-bottom: 1px solid #ddd;
+    border-radius: 0px;
+    position: relative;
+    width: 50px;
+    float: right;
+    transition: .2s;
+}
+.tag_input .ms-ctn::before{
+    content: "\f02c";
+    font: normal normal normal 14px/1 FontAwesome;
+    position: absolute;
+    left: -21px;
+    top: 14px;
+    color: #b3b3b3;
+}
+.tag_input .ms-ctn input{
+    background: rgba(255, 255, 255, 0);
+}
+.tag_input .ms-ctn input::placeholder {
+    color: rgba(255, 255, 255, 0);
+}
+.tag_input .ms-ctn-focus  input::placeholder {
+    color: #B3B3B3;
+}
+.tag_input .ms-ctn .ms-trigger{
+    display: none;
+}
+.tag_input .ms-ctn-focus{
+    background: rgba(255, 255, 255, 0);
+    border: 1px solid #66afe9;
+    border-radius: 3px;
+    border: none;
+    border-bottom: 1px solid #66afe9;
+    border-radius: 0px;
+    float: right;
+    transition: .2s;
+    width: 100%;
+}
+.tag_input .ms-ctn-focus::before{
+    /*display: none;*/
+}
+.tag_input .ms-ctn-focus input{
+    background: rgba(255, 255, 255, 0) !important;
+    min-width: 80px;
+}
+div.ms-sel-ctn input[type="text"]{
+    background: rgba(255, 255, 255, 0) !important;
+}
+.tag_input .ms-ctn-focus .ms-trigger{
+    display: block;
+    border-right: 0px;
+    border-left: 0px;
+}

@@ -1,0 +1,17 @@
+/*payment gateways*/
+.payment-block{display:block;border:1px solid #D9EEFF;margin:15px 0;padding:10px}
+.payment-gateways{margin-bottom:30px}
+.gateways-list{margin:10px 0;zoom:1;display:block;position:relative}
+.gateways-list textarea{height:70px}
+.gateways-list table td img{display:block;margin:0 auto}
+.gateways-list table{margin:10px 0}
+.gateways-list table td{padding:4px;vertical-align:top}
+.gateways-list table td .submit{padding-left:107px;padding-top:7px}
+.gateway-row{background:#fafbfc;border:1px solid #eaeff0;margin:0;padding:5px 10px;position:relative}
+.gateway-row h3{padding-left:45px;padding-top:8px;padding-bottom: 8px; margin:0; font-size: 20px;}
+.send-row h3{width:auto}
+.gateway-row .checkbox{padding-top:8px}
+.payment-gateways .accordion-switch{background:none repeat scroll 0 0 #eee;color:#555;display:block;font-size:24px;font-weight:700;height:100%;left:0;line-height:34px;position:absolute;text-align:center;top:0;width:45px;z-index:10}
+.checkbox input{height:14px}
+.checkbox input,.checkbox label{float:left}
+.gateway-details{padding:10px}
