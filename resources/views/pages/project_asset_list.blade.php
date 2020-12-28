@@ -20,7 +20,14 @@
             </div>
             <div class="header-elements d-none">
                 <div class="breadcrumb justify-content-center">
-                    
+                    <div id="filter" style="display: none;">
+                        <button type="button" class="dropdown-item" onclick="deleteProjectName()"><i class="icon-trash red-text"></i> Delete</button>
+                    </div>
+                    <a href="/add_project_asset" class="breadcrumb-elements-item">
+                        <i class="icon-add mr-2"></i>
+                        Create Project Assets
+                    </a>
+
                 </div>
             </div>
         </div>
@@ -32,18 +39,7 @@
         <!-- Invoice archive -->
         <div class="card">
             <div class="card-header header-elements-inline">
-                <h6 class="card-title">Project Asset List</h6>
-                <div class="header-elements">
-                    <div class="list-icons">
-                        <a href="/add_project_asset" class="btn btn-sm btn-outline-success">
-                            <i class="fa fa-plus"></i> <b>Add New</b>
-                        </a> &nbsp;
-
-                        <div style="display: none; float:right;" id="filter">
-                            <button type="button" onclick="deleteProjectName()" class="btn btn-sm btn-outline-danger deleteButton"><i class="fas fa-trash"> </i> Delete</button>                
-                        </div>
-                    </div>
-                </div>
+                <h6 class="card-title">Project Asset List</h6>                
             </div>  
             <table id="Example1" class="table table-lg invoice-archive">
                 <thead>

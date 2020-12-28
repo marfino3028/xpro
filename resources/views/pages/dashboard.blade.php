@@ -1,5 +1,11 @@
 @extends('layouts.index')
 @section('content')
+<style>
+	.anyClass {
+  		max-height:275px;
+  		overflow-y: scroll;
+}
+</style>
     <div class="content-wrapper">
         <!-- Page header -->
 			<div class="page-header">
@@ -91,8 +97,10 @@
 									</div>
 								</div>
 							</div>
-							<canvas id="TrafficChart" width="400" height="400"></canvas>
-							{{-- <div class="chart position-relative" id="traffic-sources"></div> --}}
+							{{-- <canvas id="TrafficChart" style="width: 800px"></canvas> --}}
+							
+							<div class="chart position-relative" id="traffic-sources" style="width: 100%;">
+							</div>
 						</div>
 						<!-- /traffic sources -->
 
@@ -120,7 +128,7 @@
 
 					<div class="card-body">
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-5">
 								<div class="card">
 									<div class="card-header bg-primary text-white header-elements-inline">
 										<h6 class="card-title">Alerts</h6>
@@ -130,43 +138,51 @@
 										<ul class="list-group list-group-flush border-top">
 											<li class="list-group-item">
 												Status work order pending
-												<span class="badge bg-success-400 ml-auto">{{ $workorder_pending }}</span>
+												<span class="badge bg-danger-400 ml-auto">{{ $workorder_pending }}</span>
 											</li>
 											<li class="list-group-item">
 												Status work order on going
-												<span class="badge bg-indigo-400 ml-auto">{{ $workorder_ongoing }}</span>
+												<span class="badge bg-info-400 ml-auto">{{ $workorder_ongoing }}</span>
 											</li>
 											<li class="list-group-item">
 												Status work order finished
-												<span class="badge bg-pink-400 ml-auto">{{ $workorder_finished }}</span>
+												<span class="badge bg-success-400 ml-auto">{{ $workorder_finished }}</span>
 											</li>
 											<li class="list-group-item">
 												Status work order draft
-												<span class="badge bg-indigo-400 ml-auto">{{ $workorder_draft }}</span>
+												<span class="badge bg-secondary ml-auto">{{ $workorder_draft }}</span>
 											</li>
 											<li class="list-group-item">
 												Staff tracking
-												<span class="badge bg-indigo-400 ml-auto">{{ $staff_tracking }}</span>
+												<span class="badge bg-primary ml-auto">{{ $staff_tracking }}</span>
 											</li>
 										</ul>
 									</div>
 								</div>
 							</div>
-		
-							<div class="col-md-6">
+							<div class="col-md-7">
+								
 								<div class="card">
 									<div class="card-header bg-primary text-white header-elements-inline">
 										<h6 class="card-title">Log Work Orders</h6>
 									</div>
 		
-									<div class="card-body">
-										<h6 class="card-title"><strong>Awesome Update</strong></h6>
-										<p class="card-text">This example demonstrates transparent card header and dark card footer. Card title is placed inside card body content.</p>
-										<h6 class="card-title text-bold"><strong>Awesome Update</strong></h6>
-										<p class="card-text">This example demonstrates transparent card header and dark card footer.</p>
+									<div class="card-body anyClass">
+										@foreach($logActivity as $la)
+										<table class="mb-3">
+										<tr class="">
+											<td><h5 class="card-title mt-1"><strong>{{ $la -> title}}</strong></h5></td>
+											<td><h6 class="card-subtitle ml-1 text-muted">{{ $la -> on_date}}</h6></td>
+										</tr>
+										<tr class="">
+										<td class=""><h6 class="card-subtitle text-muted">{{ $la -> action_by}}</h6>
+										<p class="card-text">{{ $la -> note}}</p></td>
+										</tr>
+									</table>
+										@endforeach
 									</div>
-								</div>
 								
+								</div>
 							</div>
 						</div>
 						<div class="map-container" id="map_basic"></div>
@@ -801,66 +817,42 @@
 			<!-- /content area -->
     </div>
 @endsection
-
 @push("js")
 <script>
-	$(document).ready(function(){
-      var ctx = document.getElementById('TrafficChart').getContext('2d');
-      var chart = new Chart(ctx, {
-          type: 'lines',
-          data: {
-              labels:  {!!json_encode($chart->labels)!!} ,
-              datasets: [
-                  {
-                      label: 'Jumlah Invoice',
-                      backgroundColor: "#007065" ,
-                      data:  {!! json_encode($chart->dataset)!!} ,
-                  },
-              ]
-          },
-          options: {
-              scales: {
-                  yAxes: [{
-                      ticks: {
-                          beginAtZero: true,
-                          callback: function(value) {if (value % 1 === 0) {return value;}}
-                      },
-                      scaleLabel: {
-                          display: false
-                      }
-                  }]
-              },
-              yAxis: {
-                  title: {
-                      text: 'Jumlah Aduan'
-                  }
-              },
-              legend: {
-                  labels: {
-                      fontColor: '#122C4B',
-                      fontFamily: "'Muli', sans-serif",
-                      padding: 25,
-                      boxWidth: 25,
-                      fontSize: 14,
-                  }
-              },
-              layout: {
-                  padding: {
-                      left: 10,
-                      right: 10,
-                      top: 0,
-                      bottom: 10
-                  }
-              }
-          }
-      });
-    }); 
+	new Chart(document.getElementById("TrafficChart"), {
+  type: 'line',
+  data: {
+    labels: {!! json_encode($labelData) !!},
+    datasets: [{
+      data: {!! json_encode($estimatesData) !!},
+      label: "ESTIMASI",
+      borderColor: "#3e95cd",
+      fill: false
+    }, {
+      data: {!! json_encode($invoiceData) !!},
+      label: "INVOICE",
+      borderColor: "#c45850",
+      fill: false
+    }, {
+      data: {!! json_encode($workOrderData) !!},
+      label: "WORK ORDER",
+      borderColor: "green",
+      fill: false
+	}]
+  },
+  options: {
+    title: {
+      display: true,
+    }
+  }
+});
 </script>
 <script src="/assets/js/plugins/visualization/d3/d3.min.js"></script>
 <script src="/assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
 <script src="/assets/js/plugins/forms/styling/switchery.min.js"></script>
 <script src="/assets/js/plugins/pickers/daterangepicker.js"></script>
 <script src="/assets/js/demo_pages/dashboard.js"></script>
+<script src="/assets/js/demo_charts/pages/dashboard/light/streamgraph.js"></script>
 <script src="/assets/js/demo_charts/pages/dashboard/light/sparklines.js"></script>
 <script src="/assets/js/demo_charts/pages/dashboard/light/lines.js"></script>	
 <script src="/assets/js/demo_charts/pages/dashboard/light/areas.js"></script>

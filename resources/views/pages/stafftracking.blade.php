@@ -83,6 +83,18 @@
 <div class="content-wrapper">
     <!-- Page header -->
     <div class="page-header page-header-light">
+      <div class="page-header-content header-elements-md-inline">
+        <div class="page-title d-flex">
+          <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Staff Tracking</span></h4>
+          <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+        </div>
+
+        <div class="header-elements d-none">
+          <div class="d-flex justify-content-center">
+            
+          </div>
+        </div>
+      </div>
         <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
             <div class="d-flex">
                 <div class="breadcrumb">
@@ -94,7 +106,13 @@
             </div>
             <div class="header-elements d-none">
                 <div class="breadcrumb justify-content-center">
-
+                  <div id="filter" style="display: none;">
+                    <button type="button" class="dropdown-item" onclick="deleteProjects()"><i class="icon-trash red-text"></i> Delete</button>
+                </div>
+                <a href="/add_new_projects" class="breadcrumb-elements-item">
+                    <i class="icon-add mr-2"></i>
+                    Create New Projects
+                </a>
                 </div>
             </div>
         </div>
@@ -107,16 +125,6 @@
         <div class="card">
             <div class="card-header header-elements-inline">
                 <h5 class="card-title">Project</h5>
-                <div class="header-elements">
-                    <div class="list-icons">
-                        <a href="/add_new_projects" class="btn btn-sm btn-outline-success">
-                            Add New
-                        </a>
-                        <div style="display: none; float:right;" id="filter">
-                            &nbsp;<button type="button" onclick="deleteProjects()" class="btn btn-sm btn-outline-danger deleteButton"><i class="fas fa-trash"> </i> Delete</button>                
-                        </div>
-                    </div>
-                </div>
             </div>
             <!-- Circle Buttons -->
             <div class="card-header">

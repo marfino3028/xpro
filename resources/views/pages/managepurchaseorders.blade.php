@@ -4,18 +4,39 @@
 <div class="content-wrapper">
     <!-- Page header -->
     <div class="page-header page-header-light">
+        <div class="page-header-content header-elements-md-inline">
+            <div class="page-title d-flex">
+                <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Manage Purchase Order</span></h4>
+                <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+            </div>
+
+            <div class="header-elements d-none">
+                <div class="d-flex justify-content-center">
+                    
+                </div>
+            </div>
+        </div>
+
         <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
             <div class="d-flex">
                 <div class="breadcrumb">
-                    <a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-                    <a href="/project_asset_list" class="breadcrumb-item">Project Asset List</a>
+                    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                    <span class="breadcrumb-item active">Manage Purchase Order</span>
                     <span class="breadcrumb-item active">Archive</span>
                 </div>
+
                 <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
             </div>
+
             <div class="header-elements d-none">
                 <div class="breadcrumb justify-content-center">
-
+                    <a href="/add_manage_purchase_orders" class="breadcrumb-elements-item">
+                        <i class="icon-add mr-2"></i>
+                        Create Manage Purchase Order
+                    </a>
+                    <div id="filters" style="display: none;">
+                        &nbsp;<button type="button" onclick="deleteManagePurchaseOrders()" class="btn btn-sm btn-outline-danger deleteButton"><i class="fas fa-trash"> </i> Delete</button>                
+                    </div>
                 </div>
             </div>
         </div>
@@ -30,12 +51,7 @@
                 <h6 class="card-title">Manage Purchase Order</h6>
                 <div class="header-elements">
                     <div class="list-icons">
-                        <a href="/add_manage_purchase_orders" class="btn btn-sm btn-outline-success">
-                            Add New
-                        </a>
-                        <div style="display: none; float:right;" id="filter">
-                            &nbsp;<button type="button" onclick="deleteManagePurchaseOrders()" class="btn btn-sm btn-outline-danger deleteButton"><i class="fas fa-trash"> </i> Delete</button>                
-                        </div>
+                        
                     </div>
                 </div>
             </div>

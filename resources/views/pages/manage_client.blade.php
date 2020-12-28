@@ -44,9 +44,17 @@
             </div>
             <div class="header-elements d-none">
                 <div class="breadcrumb justify-content-center">
-                    
+
+                    <a href="/add_new_client" class="breadcrumb-elements-item">
+                        <i class="icon-add mr-2"></i>
+                        Create Clients
+                    </a>
+                    <a type="submit" class="breadcrumb-elements-item deleteButton">
+                        <i class="icon-trash mr-2"></i>
+                        Delete Clients
+                    </a>
                 </div>
-            </div>
+                </div>
         </div>
     </div>
     <!-- /page header -->
@@ -57,15 +65,7 @@
         <div class="card">
             <div class="card-header header-elements-inline">
                 <h6 class="card-title">Manage Clients</h6>
-                <div class="header-elements">
-                    <div class="list-icons">
-                        <form action="/manage_client/delete_multiple" method="post" class="formDelete">
-                            <button type="submit" class="btn btn-sm btn-danger deleteButton"><i class="fas fa-trash"> </i> Delete</button>
-                    </div>
-                    <div class="col-auto justify-content-end">
-                        <a href="/add_new_client" class="btn btn-sm btn-outline-primary mb-2"><i class="fas fa-plus"></i> New Client</a>
-                    </div>
-                </div>
+            <form action="/manage_client/delete_multiple" method="post" class="formDelete">
             </div>  
 
             <div class="table-responsive">

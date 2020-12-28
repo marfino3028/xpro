@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Estimates extends Model
 {
     protected $table = 'x_estimates';
-    protected $primarykey = 'id';
     protected $fillable = [
         'id_clients',
         'id_product', 

@@ -49,7 +49,20 @@ X Pro - Staff Members
             </div>
             <div class="header-elements d-none">
                 <div class="breadcrumb justify-content-center">
+                    <a href="/add_staff_member" class="breadcrumb-elements-item">
+                        <i class="icon-add mr-2"></i>
+                        Create Staff Members
+                    </a>
 
+                    <a href="#" class="breadcrumb-elements-item dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-person mr-2"></i>
+                        Activate / Non Active Staff
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a type="submit" id="aktif" class="dropdown-item text-success btn-filter"><i class="icon-checkmark3" style="color: green"></i> Active</a>
+                        <a id="tidakaktif" type="submit" class="dropdown-item text-dangerx btn-filter"><i class="icon-cross2" style="color: red"></i> Non Active</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,29 +73,6 @@ X Pro - Staff Members
     <div class="content">
         <!-- Invoice archive -->
         <div class="card">
-            <div class="card-header header-elements-inline">
-                <h6 class="card-title">Manage Staff</h6>
-                <div class="header-elements">
-                    <div class="list-icons">
-                        <a href="/add_staff_member" class="btn btn-sm btn-outline-success">
-                            <i class="fa fa-plus"></i> <b>Add New</b>
-                        </a> &nbsp;
-
-                        <div style="display: none; float:right;" id="filter">
-                            <button type="button" onclick="NonActiveStaffMembers()" class="btn btn-sm btn-outline-danger deleteButton"><i class="icon-cross2"> </i><b> Non Active </b></button>                
-                        </div>
-
-                        <div style="display: none; float:right;" id="filter2">
-                            <button type="button" onclick="ActiveStaffMembers()" class="btn btn-sm btn-outline-success deleteButton"><i class="icon-checkmark3"> </i><b> Active </b></button>                
-                        </div>
-                    </div>
-                </div>
-            </div> 
-
-            <div style="margin-left: 20px;">
-                <button type="submit" id="aktif" class="btn btn-sm btn-outline-success active btn-filter"><b>Active</b></button>
-                <button type="submit" id="tidakaktif" class="btn btn-sm btn-outline-danger btn-filter"><b>Non Active</b></button>
-            </div>
 
             <div class="table-responsive table-aktif">
                 <table id="Example1" class="table table-lg" style="width:100%">

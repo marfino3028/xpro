@@ -10,20 +10,41 @@ X Pro - Price Group
 <div class="content-wrapper">
     <section class="content">
         <!-- Circle Buttons -->
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Price Group</h6>
-            </div>
-            <div class="card-body">
-                <form>
-                    <div class="col-auto">
-                        <button type="submit" class="btn btn-outline-success mb-2"><i class="fas fa-plus"></i> Add Price Group</button>
+        <div class="page-header page-header-light">
+            <div class="page-header-content header-elements-md-inline">
+                <div class="page-title d-flex">
+                    <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Price Group</span></h4>
+                    <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+                </div>
 
+                <div class="header-elements d-none">
+                    <div class="d-flex justify-content-center">
+                        
                     </div>
-                </form>
+                </div>
+            </div>
+
+            <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+                <div class="d-flex">
+                    <div class="breadcrumb">
+                        <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                        <span class="breadcrumb-item active">Price Group</span>
+                        <span class="breadcrumb-item active">Archive</span>
+                    </div>
+
+                    <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+                </div>
+
+                <div class="header-elements d-none">
+                    <div class="breadcrumb justify-content-center">                        
+                        <a href="/create_price_group" class="breadcrumb-elements-item">
+                            <i class="icon-add mr-2"></i>
+                            Create Price Group
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-
         <div class="card shadow mb-4">
             <table class="table">
                 <tbody>

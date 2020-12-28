@@ -48,7 +48,14 @@ X Pro - Manage Staff Role
             </div>
             <div class="header-elements d-none">
                 <div class="breadcrumb justify-content-center">
-
+                    <a href="{{ route('addstaffroles') }}" class="breadcrumb-elements-item">
+                        <i class="icon-add mr-2"></i>
+                        Create Staff Roles
+                    </a>
+                    <a href="/" class="breadcrumb-elements-item">
+                        <i class="icon-gear mr-2"></i>
+                        Settings Roles
+                    </a>
                 </div>
             </div>
         </div>
@@ -62,20 +69,7 @@ X Pro - Manage Staff Role
             <!-- Invoice archive -->
             <div class="card">
                 <div class="card-header header-elements-inline">
-                    <h5 class="card-title">Manage Staff Roles</h5>
-                    <div class="header-elements">
-                        <div class="list-icons">
-                            <a href="" class="btn btn-outline-primary">
-                                <i class="icon-cog3"></i>
-                            </a>
-                            <a href="{{ route('addstaffroles') }}" class="btn btn-sm btn-outline-success">
-                                <b>Add New</b>
-                            </a>
-                            <div style="display: none; float:right;" id="filter">
-                                &nbsp;<button type="button" onclick="deleteStaffRoles()" class="btn btn-sm btn-outline-danger deleteButton"> <b>Delete</b></button>                
-                            </div>
-                        </div>
-                    </div>
+                    <h5 class="card-title">Manage Staff Roles</h5>                
                 </div>
 
                 <div class="table-responsive">

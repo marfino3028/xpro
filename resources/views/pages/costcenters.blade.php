@@ -7,47 +7,60 @@ X Pro - Cost Centers
 
 @section('content')
 <br/>
-<div class="content-wrapper">
-    <section class="content">
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Cost Centers</h6>
-            </div>
-            <div class="card-body">
-                <form>
-                    <div class="col-auto">
-                        <div class="dropdown">
-                            <button type="submit" class="btn btn-outline-primary mb-2 dropdown-toggle" data-toggle="dropdown"><i class="fas fa-chart-pie"></i></button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Cost Center Report</a>
-                                <a class="dropdown-item" href="#">Accounts without Cost Center</a>
-                                <a class="dropdown-item" href="#">Account with Cost Center</a>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-outline-success mb-2"><i class="fas fa-plus"></i> Add Cost Centers</button>
+<div class="content-wrapper">    
+        <div class="page-header page-header-light">
+            <div class="page-header-content header-elements-md-inline">
+                <div class="page-title d-flex">
+                    <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Cost center</span></h4>
+                    <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+                </div>
+
+                <div class="header-elements d-none">
+                    <div class="d-flex justify-content-center">
+                        
                     </div>
-                </form>
+                </div>
+            </div>
+
+            <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+                <div class="d-flex">
+                    <div class="breadcrumb">
+                        <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                        <span class="breadcrumb-item active">Cost center</span>
+                    </div>
+
+                    <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+                </div>
+
+                <div class="header-elements d-none">
+                    <div class="breadcrumb justify-content-center">                        
+                        <a href="/create_cost_center" class="breadcrumb-elements-item">
+                            <i class="icon-add mr-2"></i>
+                            Create Cost Centers
+                        </a>
+
+                        <a href="#" class="breadcrumb-elements-item dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-gear mr-2"></i>
+                            Choose Cost Center
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">Cost Center Report</a>
+                            <a class="dropdown-item" href="#">Accounts without Cost Center</a>
+                            <a class="dropdown-item" href="#">Account with Cost Center</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">List Cost Centers</h6>
-            </div>
-
+        <br>
             <div class="card-body">
-                <div class="row justify-content-start">
-                    <div class="col-auto">
-                        <button type="submit" class="btn btn-sm btn-outline-danger mb-2 "><i class="fas fa-trash"> </i> Delete</button>
-                    </div>
-                </div>
-
-                <br>
 
                 <div class="table-responsive">
                     <table class="table" id="dataTableMultii" width="100%" cellspacing="0">
-                        <thead class="bg-primary text-white">
+                        <thead class="bg-dark text-white">
                             <tr>
                                 <th>#</th>
                                 <th>Id</th>
@@ -88,6 +101,5 @@ X Pro - Cost Centers
                 </div>
             </div>
         </div>
-    </section>
 </div>
 @endsection

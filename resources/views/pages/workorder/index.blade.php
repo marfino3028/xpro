@@ -32,6 +32,10 @@
                     <div id="filters" style="display: none;">
                         <button type="button" class="dropdown-item" onclick="deleteWorkOrder()"><i class="icon-trash red-text"></i> Delete</button>
                     </div>
+                    <a href="/add_work_order" class="breadcrumb-elements-item">
+                        <i class="icon-add mr-2"></i>
+                        Create Works Order
+                    </a>
                 </div>
             </div>
         </div>
@@ -61,9 +65,6 @@
                 <h6 class="card-title">Works Order</h6>
                 <div class="header-elements">
                     <div class="list-icons">
-                        <a href="/add_work_order" type="submit" class="btn btn-sm btn-success" title="Add New">
-                            <i class="icon-plus-circle2"></i>
-                        </a>
                         <a href="/work_order_settings" type="submit" class="btn btn-sm btn-primary" title="Config">
                             <i class="icon-cogs"></i>
                         </a>

@@ -42,7 +42,19 @@
             </div>
             <div class="header-elements d-none">
                 <div class="breadcrumb justify-content-center">
+                  <a href="/add_product_&_services" class="breadcrumb-elements-item">
+                    <i class="icon-add mr-2"></i>
+                    Create Product & Invoices
+                </a>
 
+                <a href="#" class="breadcrumb-elements-item dropdown-toggle" data-toggle="dropdown">
+                    <i class="icon-gear mr-2"></i>
+                    More Actions
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right">
+                    <button type="button" class="dropdown-item" onclick="deleteProductService()"><i class="icon-trash"></i>Delete</button>
+                </div>
                 </div>
             </div>
         </div>
@@ -55,12 +67,10 @@
         <div class="card">
             <div class="card-header header-elements-inline">
                 <h6 class="card-title">Product & Service</h6>
-                <div class="header-elements">
+                <div class="header-elements ">
                     <div class="list-icons">
                         <div class="form-row align-items-center" style="margin-left: -25px;">
                             <div class="col-auto">
-                                <a href="/add_product_&_services" class="btn btn-sm btn-outline-success"> Add New</a>
-                                <button type="button" onclick="deleteProductService()" class="btn btn-sm btn-outline-danger deleteButton">Delete</button> 
                             </div>
                         </div>
                     </div>

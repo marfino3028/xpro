@@ -9,22 +9,44 @@ X Pro - Project Management
 <div class="content-wrapper">
     <!-- Page header -->
     <div class="page-header page-header-light">
+        <div class="page-header-content header-elements-md-inline">
+            <div class="page-title d-flex">
+                <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Expenses Category</span></h4>
+                <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+            </div>
+
+            <div class="header-elements d-none">
+                <div class="d-flex justify-content-center">
+                    
+                </div>
+            </div>
+        </div>
+
         <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
             <div class="d-flex">
                 <div class="breadcrumb">
-                    <a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-                    <a href="/expenses" class="breadcrumb-item">Expenses</a>
+                    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                    <span class="breadcrumb-item active">Expenses</span>
                     <span class="breadcrumb-item active">Category</span>
                 </div>
+
                 <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
             </div>
+
             <div class="header-elements d-none">
                 <div class="breadcrumb justify-content-center">
-
+                    <div id="filters" style="display: none;">
+                        <button type="button" class="dropdown-item" onclick="deleteInvoice()"><i class="icon-trash red-text"></i> Delete</button>
+                    </div>
+                    <a href="/create_invoice" class="breadcrumb-elements-item" data-toggle="modal" data-target="#newExpenseModal">
+                        <i class="icon-add mr-2"></i>
+                        Create Category
+                    </a>
                 </div>
             </div>
         </div>
     </div>
+
     <!-- /page header -->
 
     {{--<div class="row">
@@ -87,7 +109,7 @@ X Pro - Project Management
                 <h6 class="card-title">Expenses Category</h6>
                 <div class="header-elements">
                     <div class="list-icons">
-                        <button type="button" class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#newExpenseModal"><i class="fas fa-plus"></i> Add Category</button>
+                        
                         <div style="display: none; float:right;" id="filter">
                             &nbsp;<button type="button" onclick="deleteCategory()" class="btn btn-sm btn-outline-danger deleteButton"><i class="fas fa-trash"> </i> Delete</button>                
                         </div>

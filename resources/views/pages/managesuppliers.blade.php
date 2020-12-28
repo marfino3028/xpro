@@ -21,18 +21,39 @@
 <div class="content-wrapper">
     <!-- Page header -->
     <div class="page-header page-header-light">
+        <div class="page-header-content header-elements-md-inline">
+            <div class="page-title d-flex">
+                <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Suppliers</span></h4>
+                <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+            </div>
+
+            <div class="header-elements d-none">
+                <div class="d-flex justify-content-center">
+                    
+                </div>
+            </div>
+        </div>
+
         <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
             <div class="d-flex">
                 <div class="breadcrumb">
-                    <a href="/dashboard" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-                    <a href="/manage_suppliers" class="breadcrumb-item">Suppliers</a>
+                    <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                    <span class="breadcrumb-item active">Suppliers</span>
                     <span class="breadcrumb-item active">Archive</span>
                 </div>
+
                 <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
             </div>
+
             <div class="header-elements d-none">
                 <div class="breadcrumb justify-content-center">
-
+                    <div style="display: none; float:right;" id="filter">
+                        <button type="button" onclick="deleteManageSuplier()" class="btn btn-sm btn-outline-danger deleteButton"><i class="fas fa-trash"> </i> Delete</button>                
+                    </div>
+                    <a href="{{route('addsuppliers')}}" class="breadcrumb-elements-item">
+                        <i class="icon-add mr-2"></i>
+                        Create Suppliers
+                    </a>
                 </div>
             </div>
         </div>
@@ -47,13 +68,12 @@
                 <h6 class="card-title">Suppliers</h6>
                 <div class="header-elements">
                     <div class="list-icons">
-                        <a href="{{route('addsuppliers')}}" class="btn btn-sm btn-outline-success">
-                            <i class="fa fa-plus"></i> <b>Add New</b>
-                        </a> &nbsp;
-
-                        <div style="display: none; float:right;" id="filter">
-                            <button type="button" onclick="deleteManageSuplier()" class="btn btn-sm btn-outline-danger deleteButton"><i class="fas fa-trash"> </i> Delete</button>                
-                        </div>
+                        <a href="" type="submit" class="btn btn-sm btn-primary" title="Logs">
+                            <i class="icon-info3"></i>
+                        </a>
+                        <a class="list-icons-item" data-action="collapse"></a>
+                        <a class="list-icons-item reload_table" data-action="reload" id="reload_table"></a>
+                        <a class="list-icons-item" data-action="remove"></a>
                     </div>
                 </div>
             </div>     

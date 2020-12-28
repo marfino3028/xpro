@@ -14,10 +14,11 @@ use App\Models\Client;
 use App\Models\Product;
 use App\Models\StaffTracking;
 use App\Models\WorkOrder;
-use App\Models\Staff;
 use App\Estimates;
-use Charts;
+use App\Models\Staff;
+use App\Models\LogActivity;
 use App\Charts\TrafficChart;
+use DB;
 class DashboardController extends BaseController
 {
     public function dataGet(Request $request){
@@ -76,15 +77,46 @@ class DashboardController extends BaseController
 		$showProduct    = Product::orderBy('id', 'asc')->get();
         $showData       = Invoice::orderBy('inv_number', 'DESC')->with('inv_batch', 'inv_product', 'client', 'product')->limit(5)->get();
         $showDue        = Invoice::orderBy('inv_number', 'DESC')->with('inv_batch', 'inv_product', 'client', 'product')->get();
-        $calcEstimates  = Estimates::groupBy('estimates_date')->count('id');
-        $disEstimates   = Estimates::orderBy('estimates_date', 'ASC')->get('estimates_date')->pluck('estimates_date');
-        $calcWorkOrder  = WorkOrder::groupBy('workorder_date')->count('id');
-        $disWorkOrder   = WorkOrder::orderBy('workorder_date', 'ASC')->get('workorder_date')->pluck('workorder_date');
-        $calcInvoice  = Invoice::groupBy('invoice_date')->count('id');
-        $disInvoice   = Invoice::orderBy('invoice_date', 'ASC')->get('invoice_date')->pluck('invoice_date');
-        $chart = new TrafficChart;
-        $chart->labels = (array_keys($disEstimates, $disWorkOrder, $disInvoice));
-        $chart->dataset = (array_values($calcEstimates, $calcWorkOrder, $calcInvoice));
+        $logActivity    = LogActivity::orderBy('on_date', 'ASC')->where('title', 'like', 'Update Work Order #W%')->get();
+        $estimatesData = DB::table('x_estimates')
+                        ->select('estimates_date', DB::raw('id as total'))
+                        ->groupBy('estimates_date')
+                        ->pluck('total', 'estimates_date')->all();
+
+        $invoiceData = DB::table('x_new_invoice')
+                        ->select('invoice_date', DB::raw('id as total'))
+                        ->groupBy('invoice_date')
+                        ->pluck('total', 'invoice_date')->all();
+
+        $workOrderData = DB::table('x_work_orders')
+                        ->select('workorder_date', DB::raw('id as total'))
+                        ->groupBy('workorder_date')
+                        ->pluck('total', 'workorder_date')->all();
+                        
+        $labelData = DB::table('x_estimates AS xs')
+        ->join('x_new_invoice AS xn', 'xs.id_clients', 'xn.client_id')
+        ->join('x_work_orders AS xw', 'xs.id_clients', 'xw.id_clients')
+        ->select('xs.estimates_date', 'xn.invoice_date', 'xw.workorder_date')
+        // ->groupBy('tanggal')
+        ->pluck('xs.estimates_date', 'xn.invoice_date', 'xw.workorder_date')->all();
+        // dd($logActivity);
+
+        // $chart = new TrafficChart;
+        // $chart->labels(array_keys($workOrderData));
+        // $chart->labels(array_keys($estimatesData));
+        // $chart->labels(array_keys($invoiceData));
+        
+        // $chart->dataset('My Estimate', 'line', array_values($estimatesData))
+        //     ->color("rgb(229, 103, 23)")
+        //     ->backgroundcolor("transparent");
+
+        // $chart->dataset('My Invoice', 'line', array_values($invoiceData))
+        //     ->color("#01796F")
+        //     ->backgroundcolor("transparent");
+
+        // $chart->dataset('My Work Order', 'line', array_values($workOrderData))
+        //     ->color("#6030A8")
+        //     ->backgroundcolor("transparent");   
         //echo json_encode($showStaff);
         return view('pages/dashboard',[
             'showUser'      => $showUser,
@@ -93,7 +125,11 @@ class DashboardController extends BaseController
             'showDue'       => $showDue,
 			'showProduct'   => $showProduct,
             'no'            => $no,
-            'chart'         => $chart,
+            'labelData'     => $labelData,
+            'estimatesData' => array_values($estimatesData),
+            'invoiceData' => array_values($invoiceData),
+            'workOrderData' => array_values($workOrderData),
+            'logActivity'   => $logActivity,
             'workorder_pending' => WorkOrder::where('status', 3)->count(),
             'workorder_ongoing' => WorkOrder::where('status', 5)->count(),
             'workorder_finished' => WorkOrder::where('status', 2)->count(),

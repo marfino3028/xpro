@@ -1,68 +1,86 @@
-@extends('masters/index_1')
-
-@section('title')
-    X Pro - Purchase Refunds
-@endsection
-
-@section('css')
-    <!-- Custom styles for this page -->
-  <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/jquery.dataTables.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/select.dataTables.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/dropdown-search.css') }}" rel="stylesheet">
-  <!-- perbaikan layout -->
-  <link rel="stylesheet" href="{{ asset('custom/css/app.css') }}" />
-  <link rel="stylesheet" href="{{ asset('custom/admin-lte/plugin/iCheck/square/blue.css') }}">
-@endsection
-
+@extends('layouts.index')
 @section('content')
-  <!-- Circle Buttons -->
-<div class="content-wrapper">
-  <section class="content">
-    <div class="content-wrapper">
-      <div class="card">
-        <div class="card-body">
-          <h6 class="m-0 font-weight-bold text-primary">Purchase Refunds</h6>
-            <div class="card-body">
-              <div class="content-header d-flex justify-content-between">
-                <div>
-                  <form>
-                    <div class="form-row align-items-center">
-                      <div class="col-auto">
-                        <select class="custom-select">
-                          <option selected>Any Supplier</option>
-                          <option value="1">Test</option>
-                        </select>
-                      </div>
-                      <div class="col-auto">
-                        <label class="sr-only" for="inlineFormInputGroup">P.O. Number</label>
-                        <input type="Text" class="form-control" id="inlineFormInputGroup" placeholder="Purchase Number">
-                      </div>
-                      <div class="col-auto">
-                        <button type="submit" class="btn btn-outline-primary">Filter</button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <div class="col-auto justify-content-end">
-                  <button type="submit" class="btn btn-outline-primary mb-2"><i class="fas fa-cog"></i></button>
-                  <button type="submit" class="btn btn-outline-success mb-2"><i class="fas fa-plus"></i> New Purchase Order</button>
-                </div>
-              </div>
+<!-- Page header -->
+<div class="page-header page-header-light">
+  <div class="page-header-content header-elements-md-inline">
+      <div class="page-title d-flex">
+          <h4><i class="icon-arrow-left52 mr-2"></i> <span class="font-weight-semibold">Manage Purchase Order</span></h4>
+          <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+      </div>
+
+      <div class="header-elements d-none">
+          <div class="d-flex justify-content-center">
+              
+          </div>
+      </div>
+  </div>
+
+  <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+      <div class="d-flex">
+          <div class="breadcrumb">
+              <a href="/" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+              <span class="breadcrumb-item active">Purchase Refunds</span>
+              <span class="breadcrumb-item active">Archive</span>
           </div>
 
-          <div class="card shadow mb-4">
-            <div class="card-body">
-              <div class="row justify-content-start">
-                <div class="col-auto">
-                  <button type="submit" class="btn btn-sm btn-danger mb-2 "><i class="fas fa-trash"> </i> Delete</button>
+          <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+      </div>
+
+      <div class="header-elements d-none">
+          <div class="breadcrumb justify-content-center">
+              <a href="/add_purchase_refunds" class="breadcrumb-elements-item">
+                  <i class="icon-add mr-2"></i>
+                  Create Purchase Refunds
+              </a>
+              <div id="filters" style="display: none;">
+                  &nbsp;<button type="button" onclick="deletePurchaseRefunds()" class="btn btn-sm btn-outline-danger deleteButton"><i class="fas fa-trash"> </i> Delete</button>                
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- /page header -->
+  <!-- Circle Buttons -->
+  <div class="content">
+    <!-- Invoice archive -->
+    <div class="card">
+        <div class="card-header header-elements-inline">
+            <h6 class="card-title">Purchase Refunds</h6>
+            <div class="header-elements">
+              <div class="list-icons">
+                  <a href="/" type="submit" class="btn btn-sm btn-primary" title="Config">
+                    <i class="icon-cogs"></i>
+                </a>
+                <a href="" type="submit" class="btn btn-sm btn-primary" title="Logs">
+                    <i class="icon-info3"></i>
+                  </a>
+                  <a class="list-icons-item" data-action="collapse"></a>
+                  <a class="list-icons-item reload_table" data-action="reload" id="reload_table"></a>
+                  <a class="list-icons-item" data-action="remove"></a>
                 </div>
               </div>
-              <br>
-                <div class="table-responsive">
-                  <table class="table" id="dataTableMultii" width="100%" cellspacing="0">
-                  <thead class="bg-primary text-white">
-                  <tr>
+            </div> 
+            <form class="ml-3">
+              <div class="form-row align-items-center">
+                <div class="col-auto">
+                  <select class="custom-select">
+                    <option selected>Any Supplier</option>
+                    <option value="1">Test</option>
+                  </select>
+                </div>
+                <div class="col-auto">
+                  <label class="sr-only" for="inlineFormInputGroup">P.O. Number</label>
+                  <input type="Text" class="form-control" id="inlineFormInputGroup" placeholder="Purchase Number">
+                </div>
+                <div class="col-auto">
+                  <button type="submit" class="btn btn-outline-primary">Filter</button>
+                </div>
+              </div>
+            </form>
+        <div class="table-responsive">
+            <table id="Example1" class="table table-lg">
+                <thead>
+                    <tr>
                       <th style="width:2%;">#</th>
                       <th>Customer Name</th>
                       <th>Title</th>
@@ -71,82 +89,55 @@
                       <th>Created</th>
                       <th>Price</th>
                     </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><input type="checkbox" id="" value=""></td>
-                      <td>#1</td>
-                      <td>Test Project</td>
-                      <td></td>
-                      <td></td>
-                      <!--<td>
-                          <!-- Dropdown Card Example ->
-                        <div class="card border-left-success">
-                          <!-- Card Header - Dropdown ->
-                          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-info">#1 Test Project - 2020-02-27</h6>
-                            <div class="dropdown no-arrow">
-                              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-caret-down fa-sm fa-fw text-gray-400"></i>
-                              </a>
-                              <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                <div class="dropdown-header">Action:</div>
-                                <a class="dropdown-item" href="#"> <i class="fas fa-search"> </i>  View</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"> <i class="fas fa-edit"> </i>  Edit</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"> <i class="fas fa-file-pdf"> </i>  PDF</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"> <i class="fas fa-print"> </i>  Print</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"> <i class="fas fa-envelope"> </i>  Email to Supplier</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"> <i class="fas fa-credit-card"> </i>  Add Payment</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"> <i class="fas fa-trash"> </i>  Delete</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"> <i class="fas fa-clone"> </i>  Clone</a>
-                              </div>
-                            </div>
-                          </div>
-                          <!-- Card Body ->
-                          <div class="card-body">
-                            <div class="d-flex justify-content-between">
-                              <div>
-                              <ul style="list-style-type:none">
-                                <li><i class="fas fa-phone"></i> <b>#1 2020-03-05</b></li>
-                                <li><i class="fas fa-"></i> Title</li>
-                                <li><i class="fas fa"></i> body</li>
-                                <li><i class="fas fa"></i> body 2</li>
-                            </ul>
-                              </div>
-
-                              <div>
-                              <ul style="list-style-type:none">
-                              <li> <b>Created: </b> 2020-03-05</li>
-                              <li><h6><i class="fas fa-cart"></i> $777.00</h6><li>
-                              <li><h6 style="color: red"> Refunded: $2.5214</h6><li>
-                                <li class="badge badge-danger">Unreceived</li>
-                                <li class="badge badge-success">Paid</li>
-                              </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>-->
-                    </tr>          
-                  </tbody>
-                </table>
-              </div>
-          </div>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
-      </div>
     </div>
-  </section>
 </div>
 @endsection
 
 @section('js')
+<script>
+  function deleteManagePurchaseOrders(id) {
+    var projects_name_id = []
+    if (id != null) {
+      projects_name_id.push(id)
+    } else {
+      $("input:checkbox[class=checkbox]:checked").each(function () {
+        projects_name_id.push($(this).val());
+      });
+    }
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
+            url: '{{ url('/')}}/purchase_refunds/delete',
+              type: "post",
+              data: {
+                "_token": "{{ csrf_token() }}",
+                data: projects_name_id
+              },
+              dataType: 'json',
+              success: function(res){
+                if (res.success) {
+                  Swal.fire('Deleted!', '', 'success');
+                  $('#Example1').DataTable().ajax.reload();
+                }
+              }
+          })
+        }
+    })
+  }
+</script>
   <!-- Page level plugins -->
   <script src="{{ asset('js/jquery-3.3.1.js') }}"></script>
   <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>

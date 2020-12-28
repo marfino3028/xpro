@@ -5,6 +5,164 @@ X Pro - Time Sheets
 @endsection
 
 @section('content')
+<style>
+    #scroll, #list {
+    position: absolute;
+    left: 10px;
+    top: 124px;
+    bottom: 0;
+    width: 240px;
+}
+
+.item {
+    box-sizing: border-box;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+
+#scheduler {
+    margin-left: 270px;
+}
+
+.dx-draggable-source {
+    opacity: 0.5;
+}
+
+.dx-popup-content {
+    bottom: 250px;
+}
+
+.dx-draggable-dragging > * {
+    box-shadow: 0 1px 3px, 0 3px 5px;
+}
+.dx-draggable {
+    
+}
+</style>
+<script>
+    $(function () {
+    var draggingGroupName = "appointmentsGroup";
+
+    var createItemElement = function(data) {
+        $("<div>")
+            .text(data.text)
+            .addClass("item dx-card dx-theme-background-color dx-theme-text-color")
+            .appendTo("#list")
+            .dxDraggable({
+                group: draggingGroupName,
+                data: data,
+                clone: true,
+                onDragEnd: function(e) {
+                    if (e.toData) {
+                        e.cancel = true;
+                    }
+                },
+                onDragStart: function(e) {
+                    e.itemData = e.fromData;
+                }
+            });
+    }
+
+    $("#scroll").dxScrollView({});
+
+    $("#list").dxDraggable({
+        data: "dropArea",
+        group: draggingGroupName,
+        onDragStart: function(e) {
+            e.cancel = true;
+        }
+    });
+
+    tasks.forEach(function(task) {
+        createItemElement(task);
+    });
+
+    $("#scheduler").dxScheduler({
+        timeZone: "America/Los_Angeles",
+        dataSource: appointments,
+        views: [{
+            type: "day",
+            intervalCount: 3
+        }],
+        currentDate: new Date(2021, 4, 24),
+        startDayHour: 8,
+        height: 600,
+        editing: true,
+        appointmentDragging: {
+            group: draggingGroupName,
+            onRemove: function(e) {
+                e.component.deleteAppointment(e.itemData);
+                createItemElement(e.itemData);
+            },
+            onAdd: function(e) {
+                e.component.addAppointment(e.itemData);
+                e.itemElement.remove();
+            }
+        }
+    });
+});
+
+
+var tasks = [
+    {
+        text: "New Brochures"
+    }, {
+        text: "Brochure Design Review"
+    }, {
+        text: "Upgrade Personal Computers"
+    }, {
+        text: "Install New Router in Dev Room"
+    }, {
+        text: "Upgrade Server Hardware"
+    }, {
+        text: "Install New Database"
+    }, {
+        text: "Website Re-Design Plan"
+    }, {
+        text: "Create Icons for Website"
+    }, {
+        text: "Submit New Website Design"
+    }, {
+        text: "Launch New Website"
+    }
+];
+
+var appointments = [{
+        text: "Book Flights to San Fran for Sales Trip",
+        startDate: new Date("2021-05-24T19:00:00.000Z"),
+        endDate: new Date("2021-05-24T20:00:00.000Z"),
+        allDay: true
+    }, {
+        text: "Approve Personal Computer Upgrade Plan",
+        startDate: new Date("2021-05-25T17:00:00.000Z"),
+        endDate: new Date("2021-05-25T18:00:00.000Z")
+    }, {
+        text: "Final Budget Review",
+        startDate: new Date("2021-05-25T19:00:00.000Z"),
+        endDate: new Date("2021-05-25T20:35:00.000Z")
+    }, {
+        text: "Approve New Online Marketing Strategy",
+        startDate: new Date("2021-05-26T19:00:00.000Z"),
+        endDate: new Date("2021-05-26T21:00:00.000Z")
+    }, {
+        text: "Customer Workshop",
+        startDate: new Date("2021-05-27T18:00:00.000Z"),
+        endDate: new Date("2021-05-27T19:00:00.000Z"),
+        allDay: true
+    }, {
+        text: "Prepare 2021 Marketing Plan",
+        startDate: new Date("2021-05-27T18:00:00.000Z"),
+        endDate: new Date("2021-05-27T20:30:00.000Z")
+    }
+];
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/20.2.4/css/dx.common.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/20.2.4/css/dx.greenmist.css" />
+    <script src="https://cdn3.devexpress.com/jslib/20.2.4/js/dx.all.js"></script>
+
 <div class="page-content">
     <div class="content-wrapper">
         <div class="page-header page-header-light">
@@ -28,11 +186,23 @@ X Pro - Time Sheets
 
                     <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
                 </div>
-
+                
                 <div class="header-elements d-none">
                     <div class="breadcrumb justify-content-center">
-                        <div class="breadcrumb-elements-item dropdown p-0">
-                            <div class="dropdown-menu dropdown-menu-right">
+                        <div class="header-elements d-none">
+                            <div class="breadcrumb justify-content-center">
+                                <div id="filters" style="display: none;">
+                                    <button type="button" class="dropdown-item" onclick="deleteInvoice()"><i class="icon-trash red-text"></i> Delete</button>
+                                </div>
+                                <a href="/time_sheet_add" class="breadcrumb-elements-item">
+                                    <i class="icon-add mr-2"></i>
+                                    Create Time Sheet
+                                </a>
+    
+                                <a href="/time_sheet_settings" class="breadcrumb-elements-item">
+                                    <i class="icon-gear mr-2"></i>
+                                    Settings Time Sheet
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -44,18 +214,6 @@ X Pro - Time Sheets
             <div class="card">
                 <div class="card-header header-elements-inline">
                     <h5 class="card-title">Time Sheet</h5>
-                    <div class="header-elements">
-                        <div class="list-icons">
-                            <div class="mr-2">
-                                <a href="/time_sheet_add" class="btn btn-sm btn-primary"><i class="icon-plus3"></i></a>
-                            </div>
-                            <div class="mr-2">
-                              <a href="/time_sheet_settings" type="submit" class="btn btn-sm btn-primary" title="Config">
-                                <i class="icon-cogs"></i>
-                            </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <hr/>
                 <form action="/time_tracking/search" method="post" target="_blank"> 
@@ -88,8 +246,13 @@ X Pro - Time Sheets
                 </form>
                 <hr/>
                 <div class="card-body">
-                    <div class="fullcalendar-agenda"></div>
-                </div>
+                    
+                    <div id="scroll">
+                            <div id="list"></div>
+                    </div>
+                        <div id="scheduler"></div>
+                    </div>
+                
             </div>
 
         {{--<div class="row" id="timesheet_detail">

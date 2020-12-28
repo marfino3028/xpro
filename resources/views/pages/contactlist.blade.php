@@ -44,7 +44,18 @@
             </div>
             <div class="header-elements d-none">
                 <div class="breadcrumb justify-content-center">
+                    <div id="filter" style="display: none;">
+                        <button type="button" class="dropdown-item" onclick="deleteContactList()"><i class="icon-trash red-text"></i> Delete</button>
+                    </div>
+                    <a href="/add_contact_list" class="breadcrumb-elements-item">
+                        <i class="icon-add mr-2"></i>
+                        Create Contact
+                    </a>
 
+                    <a href="/" class="breadcrumb-elements-item">
+                        <i class="icon-gear mr-2"></i>
+                        Settings
+                    </a>
                 </div>
             </div>
         </div>
@@ -57,19 +68,7 @@
         <div class="card">
             <div class="card-header header-elements-inline">
                 <h6 class="card-title">Contact List</h6>
-                <div class="header-elements">
-                    <div class="list-icons">
-                        <a href="" class="btn btn-outline-primary">
-                            <i class="icon-cog3"></i>
-                        </a>
-                        <a href="/add_contact_list" class="btn btn-sm btn-outline-success">
-                             Add New
-                        </a>
-                        <div style="display: none; float:right;" id="filter">
-                            &nbsp;<button type="button" onclick="deleteContactList()" class="btn btn-sm btn-outline-danger deleteButton"><i class="fas fa-trash"> </i> Delete</button>                
-                        </div>
-                    </div>
-                </div>
+                
             </div>
 
 
