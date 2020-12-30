@@ -5,7 +5,14 @@
   		max-height:275px;
   		overflow-y: scroll;
 }
+	.card {
+		border-radius: 8px;
+	}
 </style>
+<?php
+$auth = Auth::user();
+
+?>
     <div class="content-wrapper">
         <!-- Page header -->
 			<div class="page-header">
@@ -54,8 +61,63 @@
 									</div>
 								</div>--}}
 							</div>
-
-							<div class="card-body py-0">
+							<div class="row ml-4 mr-4">
+								<div class="col-sm-4">
+							<div class="card" style="box-shadow: 5px 10px #007065">
+								<div class="card-body">
+								<div class="row">
+								<div class="col-sm-3">
+									{{-- chart --}}
+								</div>
+								<div class="col-sm-6" style="">
+								  <h3 class="text-dark font-bold">Invoice</h5>
+									<h5 class="text-xs text-grey font-bold">Rp. 57.808.123</h5>
+								</div>
+								<div class="col-sm-3">
+									<img src="https://cdn.onlinewebfonts.com/svg/img_567686.png" alt="filter applied" width="50px" height="50px" alt="">
+								</div>
+								</div>
+								</div>
+							  </div>
+							</div>
+							<div class="col-sm-4">
+							  <div class="card " style="box-shadow: 5px 10px #ff531d">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-sm-3">
+											{{-- chart --}}
+										</div>
+										<div class="col-sm-6">
+										  <h3 class="text-dark font-bold">Estimasi</h5>
+											<h5 class="text-grey font-bold">Rp. 57.808.123</h5>
+										</div>
+										<div class="col-sm-3">
+											<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Simple_icon_time.svg/1200px-Simple_icon_time.svg.png" style="color: #007065" width="50px" height="50px" alt="">
+										</div>
+										</div>
+								</div>
+							</div>
+							</div>
+							<div class="col-sm-4">
+							  <div class="card" style="box-shadow: 5px 10px #4555b1">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-sm-3">
+											{{-- chart --}}
+										</div>
+										<div class="col-sm-6">
+										  <h3 class="text-dark font-bold">Work Order</h5>
+											<h5 class="text-xl text-grey font-bold">Rp. 57.808.123</h5>
+										</div>
+										<div class="col-sm-3">
+											<img src="https://cdn.onlinewebfonts.com/svg/img_85075.png" style="color: #007065" width="50px" height="50px" alt="">
+										</div>
+										</div>
+								</div>
+							</div>
+							</div>
+							</div>
+							{{-- <div class="card-body py-0">
 								<div class="row">
 									<div class="col-sm-4">
 										<div class="d-flex align-items-center justify-content-center mb-2">
@@ -96,11 +158,10 @@
 										<div class="w-75 mx-auto mb-3" id="total-online"></div>
 									</div>
 								</div>
-							</div>
+							</div> --}}
 							{{-- <canvas id="TrafficChart" style="width: 800px"></canvas> --}}
-							
-							<div class="chart position-relative" id="traffic-sources" style="width: 100%;">
-							</div>
+							{{-- <div class="chart position-relative" id="traffic-sources" style="width: 100%;"> --}}
+							{{-- </div> --}}
 						</div>
 						<!-- /traffic sources -->
 
@@ -134,28 +195,70 @@
 										<h6 class="card-title">Alerts</h6>
 									</div>
 		
-									<div class="card-body">
+									<div class="card-body anyClass">
 										<ul class="list-group list-group-flush border-top">
 											<li class="list-group-item">
+												<button style="border:none; background:none;" onclick="showhidePending(), showmapsPending()">
 												Status work order pending
+												</button>
 												<span class="badge bg-danger-400 ml-auto">{{ $workorder_pending }}</span>
 											</li>
+											<div id="hidePending" style="display: none;">
+											  <li class="list-group-item">
+												@foreach ($clientPending as $pending)
+												<li class="list-group-item list-group-flush text-muted text-muted font-size-sm" style="left: 10px; top:-30px;"><p class="text-danger">{{$pending}}</p></li>
+													
+												@endforeach
+											  </li>
+											</div>
 											<li class="list-group-item">
-												Status work order on going
-												<span class="badge bg-info-400 ml-auto">{{ $workorder_ongoing }}</span>
-											</li>
-											<li class="list-group-item">
+												<button style="border:none; background:none;" onclick="showhideFinished()">
 												Status work order finished
+												</button>
 												<span class="badge bg-success-400 ml-auto">{{ $workorder_finished }}</span>
 											</li>
+											<div id="hideFinished" style="display: none;">
+												<li class="list-group-item">
+												  @foreach ($clientFinished as $finished)
+												  <li class="list-group-item list-group-flush text-muted text-muted font-size-sm" style="left: 10px; top:-30px;"><p class="text-success">{{$finished}}</p></li>
+													  
+												  @endforeach
+												</li>
+											  </div>
 											<li class="list-group-item">
+												<button style="border:none; background:none;" onclick="showhideDraft()">
 												Status work order draft
+												</button>
 												<span class="badge bg-secondary ml-auto">{{ $workorder_draft }}</span>
 											</li>
+											<div id="hideDraft" style="display: none;">
+												<li class="list-group-item">
+												  @foreach ($clientDraft as $draft)
+												  <li class="list-group-item list-group-flush text-muted text-muted font-size-sm" style="left: 10px; top:-30px;"><p class="text-grey">{{$draft}}</p></li>
+													  
+												  @endforeach
+												</li>
+											  </div>
+											<?php if ($auth->role_id === 1) { ?>
 											<li class="list-group-item">
-												Staff tracking
-												<span class="badge bg-primary ml-auto">{{ $staff_tracking }}</span>
+												<button style="border:none; background:none;" onclick="showhideTracking()">
+												<p class="text-default font-weight-bold letter-icon-title mt-1">Staff tracking</p>
+												</button>
+												<span class="badge bg-primary ml-auto text-default font-weight-bold letter-icon-title mt-1">{{ $staff_tracking }}</span>
 											</li>
+											<div id="hideTracking" style="display: none;">
+												<li class="list-group-item">
+												  @foreach ($clientAll as $tracking)
+												  
+													  <li class="list-group-item list-group-flush text-muted text-muted font-size-sm" style="left: 10px; top:-30px;"><p class="text-info">{{$tracking}}</p></li>
+												
+												  @endforeach
+												</li>
+											  </div>
+											<?php } else { ?>
+												<li class="list-group-item">													
+												</li>
+											<?php } ?>
 										</ul>
 									</div>
 								</div>
@@ -171,12 +274,12 @@
 										@foreach($logActivity as $la)
 										<table class="mb-3">
 										<tr class="">
-											<td><h5 class="card-title mt-1"><strong>{{ $la -> title}}</strong></h5></td>
-											<td><h6 class="card-subtitle ml-1 text-muted">{{ $la -> on_date}}</h6></td>
+											<td><h5 class="card-title text-default font-weight-bold letter-icon-title mt-1"><strong>{{ $la -> title}}</strong></h5></td>
+											<td><h6 class="card-subtitle ml-1 text-muted text-muted font-size-sm">{{ $la -> on_date}}</h6></td>
 										</tr>
 										<tr class="">
-										<td class=""><h6 class="card-subtitle text-muted">{{ $la -> action_by}}</h6>
-										<p class="card-text">{{ $la -> note}}</p></td>
+										<td class=""><h6 class="card-subtitle text-default font-weight-semibold letter-icon-title">{{ $la -> action_by}}</h6>
+										<p class="card-text text-muted font-size-sm">{{ $la -> note}}</p></td>
 										</tr>
 									</table>
 										@endforeach
@@ -818,34 +921,104 @@
     </div>
 @endsection
 @push("js")
+
 <script>
-	new Chart(document.getElementById("TrafficChart"), {
-  type: 'line',
-  data: {
-    labels: {!! json_encode($labelData) !!},
-    datasets: [{
-      data: {!! json_encode($estimatesData) !!},
-      label: "ESTIMASI",
-      borderColor: "#3e95cd",
-      fill: false
-    }, {
-      data: {!! json_encode($invoiceData) !!},
-      label: "INVOICE",
-      borderColor: "#c45850",
-      fill: false
-    }, {
-      data: {!! json_encode($workOrderData) !!},
-      label: "WORK ORDER",
-      borderColor: "green",
-      fill: false
-	}]
-  },
-  options: {
-    title: {
-      display: true,
+
+	function MarkerView(e = {}, isnotzoomed = true) {
+		Required(e, [
+			'lat',
+			'lng',
+			'nama'
+		])
+
+		let size = e.size ?? 30
+		let zoom = e.zoom ?? 16
+
+		icon = {
+			url: e.file,
+			size: new google.maps.Size(size, size),
+			anchor: new google.maps.Point(10, 10),
+			scaledSize: new google.maps.Size(size, size),
+			name: e.name
+		}
+		let marker = new google.maps.Marker({
+		position: new google.maps.LatLng(e.lat, e.lng),
+		map: map,
+		title: e.name
+	})
+
+	marker.addListener('click', e.callback)
+
+	if(isnotzoomed == false) {
+		map.setZoom(zoom)
+		map.setCenter({ lat: parseFloat(e.lat), lng: parseFloat(e.lng) });
+	}
+	return marker
+	}
+
+	function allAugmented(e){
+		if(e.checked){
+			augmented.forEach((x) => {
+				let marker = MarkerView({
+					...x,
+					...{
+						size: 100,
+						file: x.file,
+						callback: (r)=> {
+
+						}
+					}
+				})
+				augmentedList.push(marker)
+			})
+		}else{
+			augmentedList.forEach((augmented) => {
+				augmented.setMap(null)
+			})
+			augmentedList = []
+		}
+	}
+
+	function showhidePending()
+     {
+           var div = document.getElementById("hidePending");
+    if (div.style.display === "block") {
+        div.style.display = "none";
     }
-  }
-});
+    else {
+        div.style.display = "block";
+    }
+     }
+	function showhideFinished()
+     {
+           var div = document.getElementById("hideFinished");
+    if (div.style.display === "block") {
+        div.style.display = "none";
+    }
+    else {
+        div.style.display = "block";
+    }
+     }
+	function showhideDraft()
+     {
+           var div = document.getElementById("hideDraft");
+    if (div.style.display === "block") {
+        div.style.display = "none";
+    }
+    else {
+        div.style.display = "block";
+    }
+     }
+	function showhideTracking()
+     {
+           var div = document.getElementById("hideTracking");
+    if (div.style.display === "block") {
+        div.style.display = "none";
+    }
+    else {
+        div.style.display = "block";
+    }
+     }
 </script>
 <script src="/assets/js/plugins/visualization/d3/d3.min.js"></script>
 <script src="/assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
