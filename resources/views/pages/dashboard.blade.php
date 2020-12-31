@@ -71,7 +71,7 @@ $auth = Auth::user();
 								</div>
 								<div class="col-sm-6" style="">
 								  <h3 class="text-dark font-bold">Invoice</h5>
-									<h5 class="text-xs text-grey font-bold">Rp. 57.808.123</h5>
+									<h5 class="text-xs text-grey font-bold">$ 57.808</h5>
 								</div>
 								<div class="col-sm-3">
 									<img class="img-profile rounded-circle" src="{{ asset('/img/invoice.png') }}" width="75px" height="75px">
@@ -89,7 +89,7 @@ $auth = Auth::user();
 										</div>
 										<div class="col-sm-6">
 										  <h3 class="text-dark font-bold">Estimasi</h5>
-											<h5 class="text-grey font-bold">Rp. 57.808.123</h5>
+											<h5 class="text-grey font-bold">$ 57.123</h5>
 										</div>
 										<div class="col-sm-3">
 											<img class="img-profile rounded-circle" src="{{ asset('/img/estimasi.png') }}" width="70px" height="70px">
@@ -107,7 +107,7 @@ $auth = Auth::user();
 										</div>
 										<div class="col-sm-6">
 										  <h3 class="text-dark font-bold">Work Order</h5>
-											<h5 class="text-xl text-grey font-bold">Rp. 57.808.123</h5>
+											<h5 class="text-xl text-grey font-bold">$ 57.345</h5>
 										</div>
 										<div class="col-sm-3">
 											<img class="img-profile rounded-circle" src="{{ asset('/img/workorder.png') }}" width="75px" height="75px">
