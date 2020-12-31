@@ -74,7 +74,7 @@ $auth = Auth::user();
 									<h5 class="text-xs text-grey font-bold">Rp. 57.808.123</h5>
 								</div>
 								<div class="col-sm-3">
-									<img src="https://cdn.onlinewebfonts.com/svg/img_567686.png" alt="filter applied" width="50px" height="50px" alt="">
+									<img class="img-profile rounded-circle" src="{{ asset('/img/invoice.png') }}" width="75px" height="75px">
 								</div>
 								</div>
 								</div>
@@ -92,7 +92,7 @@ $auth = Auth::user();
 											<h5 class="text-grey font-bold">Rp. 57.808.123</h5>
 										</div>
 										<div class="col-sm-3">
-											<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Simple_icon_time.svg/1200px-Simple_icon_time.svg.png" style="color: #007065" width="50px" height="50px" alt="">
+											<img class="img-profile rounded-circle" src="{{ asset('/img/estimasi.png') }}" width="70px" height="70px">
 										</div>
 										</div>
 								</div>
@@ -110,7 +110,7 @@ $auth = Auth::user();
 											<h5 class="text-xl text-grey font-bold">Rp. 57.808.123</h5>
 										</div>
 										<div class="col-sm-3">
-											<img src="https://cdn.onlinewebfonts.com/svg/img_85075.png" style="color: #007065" width="50px" height="50px" alt="">
+											<img class="img-profile rounded-circle" src="{{ asset('/img/workorder.png') }}" width="75px" height="75px">
 										</div>
 										</div>
 								</div>
